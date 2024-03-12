@@ -14,4 +14,19 @@ public Header orderButtonClick(){
     return this;
 }
 
+public Header fillOrderNumberField(String string){
+    getOrderNumberField().sendKeys(string);
+    return this;
+}
+
+public Header clickOrderStatusButton(){
+    getOrderStatusButton().click();
+    return this;
+}
+
+public Header clickGoButton(){
+    getGoButton().click();
+    return this;
+}
+
 }
