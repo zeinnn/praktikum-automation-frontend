@@ -4,6 +4,9 @@
 /build
 /.gradle
 *.class
+gradle/
+gradlew
+gradlew.bat
 
 # Log file
 */logs
