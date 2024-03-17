@@ -1,6 +1,10 @@
 package pages.order;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.selector.ByAttribute;
+import com.codeborne.selenide.selector.ByText;
 import com.github.romankh3.image.comparison.ImageComparison;
 import com.github.romankh3.image.comparison.ImageComparisonUtil;
 import com.github.romankh3.image.comparison.model.ImageComparisonResult;
@@ -9,6 +13,7 @@ import io.qameta.allure.Attachment;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.OutputType;
+import static com.codeborne.selenide.Selectors.*;
 
 import javax.imageio.IIOException;
 import java.awt.image.BufferedImage;
@@ -16,7 +21,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
-public class OrderPage {
+import static com.codeborne.selenide.Selectors.byAttribute;
+import static com.codeborne.selenide.Selenide.*;
+
+public class OrderPage extends OrderPageSelectors{
     public void assertScreen(TestInfo info){
         String expectedFileName = info.getTestMethod().get().getName() + ".png";
         String expectedScreenDir = "src/test/resources/screens/";
@@ -60,4 +68,38 @@ public class OrderPage {
     private static byte[] saveScreenshot(String name, byte[] image){
         return image;
     }
+
+    public OrderPage fillNameField(String string){
+        getNameField().sendKeys(string);
+        return this;
+    }
+
+    public OrderPage fillSurnameField(String string){
+        getSurnameField().sendKeys(string);
+        return this;
+    }
+
+    public OrderPage fillPhoneField(String string){
+        getPhoneField().sendKeys(string);
+        return this;
+    }
+
+    public OrderPage fillAddressField(String string){
+        getAddressField().sendKeys(string);
+        return this;
+    }
+
+    public OrderPage fillSubwayField(String subwayName, String style){
+        getSubwayField().click();
+        $(byXpath(".//div[text() = "+ "'"+ subwayName +"'"+"]/preceding-sibling::div[@style = "+ "'"+ style +"'" + "]/parent::button")).click();
+       return this;
+
+    }
+
+    public OrderPage clickNextButton(){
+       getNextButton().click();
+        return this;
+
+    }
+
 }
