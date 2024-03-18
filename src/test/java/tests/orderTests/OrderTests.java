@@ -14,24 +14,11 @@ public class OrderTests extends TestBase {
     Faker faker = new Faker();
 
     @Test
-    @DisplayName("Если нажать на логотип «Самоката», попадёшь на главную страницу «Самоката»")
-    void scooterLogoTest(){
-        step("Открыть страницу", () -> {
-            mainPage.openPage();
-        });
-        step("Нажать кнопку создания заказа в хедере", () -> {
-            header.orderButtonClick();
-        });
-        step("Кликнуть по иконке 'Самокат' в хедере", () -> {
-            header.scooterLogoClick();
-        });
-    }
-
-    @Test
     @DisplayName("Проверка заказа по не существующему номеру")
     void fakeOrderNumber(TestInfo info){
         step("Open page", () -> {
             mainPage.openPage();
+            cookie.clickCookieButton();
         });
 
         step("Кликнуть по кнопке 'Статус заказа' ", () -> {
@@ -53,6 +40,45 @@ public class OrderTests extends TestBase {
         step("Проверить, что есть заглушка not found", () -> {
             trackPage.checkNotFound();
         });
+    }
+
+    @Test
+    @DisplayName("Заказ самоката через  кнопку Заказать в хедере")
+    void headerOrder(){
+        step("Открыть страницу", () -> {
+            mainPage.openPage();
+            cookie.clickCookieButton();
+        });
+
+        step("Нажать кнопку Заказать в хедере", () -> {
+            header.orderButtonClick();
+        });
+        step("Ввести {{string}} в поле Имя", () -> {
+            orderPage.fillNameField("Дмитрий");
+        });
+
+        step("Ввести {{string}} в поле Фамилия", () -> {
+            orderPage.fillSurnameField("Иванов");
+        });
+
+        step("Ввести адрес в поле Адрес", () -> {
+            orderPage.fillAddressField("Проезд Северный 1");
+        });
+
+        step("Ввести телефон в поле Телефон", () -> {
+            orderPage.fillPhoneField("79619057777");
+        });
+
+
+        step("Выбрать станцию метро", () -> {
+            orderPage.fillSubwayField("Бульвар Рокоссовского", "background-color: rgb(217, 43, 44);");
+        });
+
+        step("Нажать кнопку Далее", () -> {
+            orderPage.clickNextButton();
+        });
+
+
 
 
 
