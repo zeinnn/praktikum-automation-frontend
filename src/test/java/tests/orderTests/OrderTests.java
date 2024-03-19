@@ -78,6 +78,25 @@ public class OrderTests extends TestBase {
             orderPage.clickNextButton();
         });
 
+        step("Нажать на поле Когда привезти самокат", () -> {
+            orderPage.clickCalendarButton();
+        });
+
+        step("Выбрать дату доставки самоката", () -> {
+            datePicker.chooseDayOfWeek("понедельник, 25-е марта 2024 г.");
+        });
+
+        step("Нажать на поле Срок аренды", () -> {
+            orderPage.clickRentDateField();
+        });
+
+        step("Выбрать на сколько арендовать самокат", () -> {
+            orderPage.chooseRentDate("сутки");
+        });
+
+        step("Выбрать цвет самоката", () -> {
+            orderPage.chooseRentDate("сутки");
+        });
 
 
 

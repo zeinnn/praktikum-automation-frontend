@@ -11,7 +11,9 @@ import static com.codeborne.selenide.Selenide.*;
 @Getter
 public class OrderPageSelectors {
 
-    private ElementsCollection subwayCollection= $$(byClassName("Order_Circle__3uWFr"));
+    private ElementsCollection subwayCollection= $$(byClassName("Order_Circle__3uWFr")),
+
+    datePickerWeek = $$(byClassName("react-datepicker__day-name"));
 
     private SelenideElement nameField = $(byAttribute("placeholder","* Имя")),
 
@@ -31,7 +33,15 @@ public class OrderPageSelectors {
 
     backButton = $(byClassName("Button_Inverted__3IF-i")),
 
-    orderButton = $(byXpath(".//div[@class = 'Order_Buttons__1xGrp']/button[text() = 'Заказать']"));
+    orderButton = $(byXpath(".//div[@class = 'Order_Buttons__1xGrp']/button[text() = 'Заказать']")),
+
+    orderHeader = $(byClassName("Order_Header__BZXOb")),
+
+    rentDate = $(byClassName("Dropdown-control")),
+
+
+
+
 
 
 }

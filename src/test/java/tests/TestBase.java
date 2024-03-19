@@ -2,21 +2,14 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import elements.DatePicker;
 import elements.cookie.Cookie;
 import elements.header.Header;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import pages.MainPage;
 import pages.order.OrderPage;
 import pages.track.TrackPage;
-
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import static javax.swing.UIManager.put;
 
 public class TestBase {
 
@@ -29,6 +22,8 @@ public class TestBase {
     public TrackPage trackPage = new TrackPage();
 
     public Cookie cookie = new Cookie();
+
+    public DatePicker datePicker = new DatePicker();
 
 
     @BeforeAll
