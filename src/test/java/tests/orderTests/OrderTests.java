@@ -1,7 +1,10 @@
 package tests.orderTests;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.github.javafaker.Faker;
 import elements.header.Header;
+import groovyjarjarpicocli.CommandLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
@@ -19,10 +22,6 @@ public class OrderTests extends TestBase {
         step("Open page", () -> {
             mainPage.openPage();
             cookie.clickCookieButton();
-        });
-
-        step("Кликнуть по кнопке 'Статус заказа' ", () -> {
-            header.clickOrderStatusButton();
         });
 
         step("Кликнуть по кнопке 'Статус заказа' ", () -> {
@@ -53,51 +52,52 @@ public class OrderTests extends TestBase {
         step("Нажать кнопку Заказать в хедере", () -> {
             header.orderButtonClick();
         });
-        step("Ввести {{string}} в поле Имя", () -> {
-            orderPage.fillNameField("Дмитрий");
-        });
 
-        step("Ввести {{string}} в поле Фамилия", () -> {
-            orderPage.fillSurnameField("Иванов");
-        });
-
-        step("Ввести адрес в поле Адрес", () -> {
-            orderPage.fillAddressField("Проезд Северный 1");
-        });
-
-        step("Ввести телефон в поле Телефон", () -> {
-            orderPage.fillPhoneField("79619057777");
-        });
-
-
-        step("Выбрать станцию метро", () -> {
-            orderPage.fillSubwayField("Бульвар Рокоссовского", "background-color: rgb(217, 43, 44);");
+        step("Заполнить форму Для кого самокат", () -> {
+            orderPage.fillFirstOrderForm("Алексей",
+                    "Дмитриев",
+                    "Проезд Северный",
+                    "Красные Ворота", "background-color: rgb(217, 43, 44);",
+                    "89619056666");
         });
 
         step("Нажать кнопку Далее", () -> {
             orderPage.clickNextButton();
         });
 
-        step("Нажать на поле Когда привезти самокат", () -> {
-            orderPage.clickCalendarButton();
+        step("Заполнить форму Про аренду", () -> {
+           orderPage.chooseDayOfWeek("понедельник, 25-е марта 2024 г.");
+            orderPage.chooseRentDate("семеро суток");
+            orderPage.chooseScooterColorGrey();
+            orderPage.fillCommentaryField("Тест");
         });
 
-        step("Выбрать дату доставки самоката", () -> {
-            datePicker.chooseDayOfWeek("понедельник, 25-е марта 2024 г.");
+        step("Нажать кнопку Заказать", () -> {
+            orderPage.clickOrderButton();
         });
 
-        step("Нажать на поле Срок аренды", () -> {
-            orderPage.clickRentDateField();
+        step("Нажать кнопку Да", () -> {
+            orderPage.clickYesOrderButton();
         });
 
-        step("Выбрать на сколько арендовать самокат", () -> {
-            orderPage.chooseRentDate("сутки");
+        step("Найти созданный заказ в поиске", () -> {
+            orderPage.clickYesOrderButton();
         });
 
-        step("Выбрать цвет самоката", () -> {
-            orderPage.chooseRentDate("сутки");
+        step("Сравнить ожидаемые и фактические результаты заказа", () -> {
+            orderPage.clickYesOrderButton();
+        });
+    }
+    @Test()
+    @DisplayName("Проверка того, что тайтл старницы не пустой и не undefined")
+    void titleTest(){
+        step("Открыть страницу", () -> {
+            mainPage.openPage();
         });
 
+        step("Проверить title", () -> {
+            mainPage.getTitle().shouldNotBe(Condition.empty);
+        });
 
 
 

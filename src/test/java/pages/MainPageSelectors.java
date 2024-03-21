@@ -12,5 +12,7 @@ public class MainPageSelectors {
 
     ElementsCollection e = $$(byClassName("accordion"));
 
-    SelenideElement bigString = $(byClassName("Home_Header__iJKdX"));
+    SelenideElement bigString = $(byClassName("Home_Header__iJKdX")),
+
+    title = $(byXpath(".//head/title"));
 }

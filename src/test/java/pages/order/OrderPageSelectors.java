@@ -29,7 +29,7 @@ public class OrderPageSelectors {
 
     calendarButton = $(byAttribute("placeholder","* Когда привезти самокат")),
 
-    commentForCourier = $(byAttribute("placeholder","Комментарий для курьера")),
+    commentForCourierField = $(byAttribute("placeholder","Комментарий для курьера")),
 
     backButton = $(byClassName("Button_Inverted__3IF-i")),
 
@@ -38,6 +38,17 @@ public class OrderPageSelectors {
     orderHeader = $(byClassName("Order_Header__BZXOb")),
 
     rentDate = $(byClassName("Dropdown-control")),
+
+    ScooterColorText = $(byClassName("Order_Title__3EKne")),
+
+    blackScooterColorCheckbox = $(byId("black")),
+
+    greyScooterColorCheckBox = $(byId("grey")),
+
+    yesOrderConfirmButton = $(byXpath(".//div[@class = 'Order_Buttons__1xGrp']/button[text() = 'Да']")),
+
+    noOrderConfirmButton = $(byXpath(".//div[@class = 'Order_Buttons__1xGrp']/button[text() = 'Нет']"));
+
 
 
 

@@ -1,7 +1,6 @@
 package pages;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.open;
 
 public class MainPage extends  MainPageSelectors {
@@ -15,5 +14,11 @@ public class MainPage extends  MainPageSelectors {
 
         return this;
 
+    }
+    public MainPage titleCheck(){
+        //title.shouldNotBe(visible);
+        //title.shouldNotBe(empty);
+        title.shouldNotBe(empty);
+        return this;
     }
 }
