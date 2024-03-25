@@ -79,14 +79,6 @@ public class OrderTests extends TestBase {
         step("Нажать кнопку Да", () -> {
             orderPage.clickYesOrderButton();
         });
-
-        step("Найти созданный заказ в поиске", () -> {
-            orderPage.clickYesOrderButton();
-        });
-
-        step("Сравнить ожидаемые и фактические результаты заказа", () -> {
-            orderPage.clickYesOrderButton();
-        });
     }
     @Test()
     @DisplayName("Проверка того, что тайтл старницы не пустой и не undefined")

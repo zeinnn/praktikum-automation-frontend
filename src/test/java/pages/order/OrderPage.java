@@ -120,6 +120,14 @@ public class OrderPage extends OrderPageSelectors {
         return this;
     }
 
+    public OrderPage clickCheckStatusButton(){
+        getCheckStatusButton().shouldHave(Condition.exactText("Посмотреть статус"));
+        getCheckStatusButton().click();
+        return this;
+    }
+
+
+
 
 
     public OrderPage fillFirstOrderForm(String name,String surname, String address, String subwayName, String subwayColor, String phone){

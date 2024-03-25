@@ -47,7 +47,9 @@ public class OrderPageSelectors {
 
     yesOrderConfirmButton = $(byXpath(".//div[@class = 'Order_Buttons__1xGrp']/button[text() = 'Да']")),
 
-    noOrderConfirmButton = $(byXpath(".//div[@class = 'Order_Buttons__1xGrp']/button[text() = 'Нет']"));
+    noOrderConfirmButton = $(byXpath(".//div[@class = 'Order_Buttons__1xGrp']/button[text() = 'Нет']")),
+
+    checkStatusButton = $(".Order_NextButton__1_rCA>button");
 
 
 
