@@ -120,6 +120,17 @@ public class OrderPage extends OrderPageSelectors {
         return this;
     }
 
+    public OrderPage getOrderNumber(){
+        String stroka = $(".Order_Text__2broi").getText();
+        char[] charArray = stroka.toCharArray();
+        for(int i = 14; i<20;i++){
+           System.out.print(charArray[i]);
+        }
+        return this;
+    }
+
+
+
     public OrderPage clickCheckStatusButton(){
         getCheckStatusButton().shouldHave(Condition.exactText("Посмотреть статус"));
         getCheckStatusButton().click();

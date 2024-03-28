@@ -2,6 +2,7 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import com.github.javafaker.Faker;
 import elements.DatePicker;
 import elements.cookie.Cookie;
 import elements.header.Header;
@@ -19,6 +20,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 
 public class TestBase {
@@ -36,39 +38,19 @@ public class TestBase {
 
     public DatePicker datePicker = new DatePicker();
 
+    public Faker faker = new Faker(new Locale("ru"));
+
 
     @BeforeAll
     static void beforeAll() throws MalformedURLException {
-        //System.setProperty("webdriver.chrome.driver","src/test/resources/yandexdriver.exe");
+        System.setProperty("webdriver.chrome.driver","src/test/resources/yandexdriver.exe");
         ChromeOptions options = new ChromeOptions();
-        //options.setBinary("C:/Users/smith/AppData/Local/Yandex/YandexBrowser/Application/browser.exe");
-        //WebDriver driver = new ChromeDriver(options);
+        options.setBinary("C:/Program Files (x86)/Yandex/YandexBrowser/Application/browser.exe");
+        WebDriver driver = new ChromeDriver(options);
         Configuration.baseUrl = "https://qa-scooter.praktikum-services.ru/";
         Configuration.browserSize = "1920x1080";
         Configuration.holdBrowserOpen = true;
-
-        options.setCapability("browserVersion", "121.0");
-        options.setCapability("selenoid:options", new HashMap<String, Object>() {{
-            /* How to add test badge */
-            put("name", "Test badge...");
-
-            /* How to set session timeout */
-            put("sessionTimeout", "15m");
-
-            /* How to set timezone */
-            put("env", new ArrayList<String>() {{
-                add("TZ=UTC");
-            }});
-
-            /* How to add "trash" button */
-            put("labels", new HashMap<String, Object>() {{
-                put("manual", "true");
-            }});
-
-            /* How to enable video recording */
-            put("enableVideo", true);
-        }});
-        RemoteWebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
+        Configuration.timeout = 100000;
     }
     void addListeners(){
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());

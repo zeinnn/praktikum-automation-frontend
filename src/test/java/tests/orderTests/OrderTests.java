@@ -10,11 +10,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import tests.TestBase;
 
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.sleep;
 import static io.qameta.allure.Allure.step;
 
 public class OrderTests extends TestBase {
 
-    Faker faker = new Faker();
 
     @Test
     @DisplayName("Проверка заказа по не существующему номеру")
@@ -54,11 +55,12 @@ public class OrderTests extends TestBase {
         });
 
         step("Заполнить форму Для кого самокат", () -> {
-            orderPage.fillFirstOrderForm("Алексей",
-                    "Дмитриев",
-                    "Проезд Северный",
+            orderPage.fillFirstOrderForm(
+                    faker.name().firstName(),
+                    faker.name().lastName(),
+                    faker.address().streetAddress(),
                     "Красные Ворота", "background-color: rgb(217, 43, 44);",
-                    "89619056666");
+                    "89619058888");
         });
 
         step("Нажать кнопку Далее", () -> {
@@ -78,6 +80,16 @@ public class OrderTests extends TestBase {
 
         step("Нажать кнопку Да", () -> {
             orderPage.clickYesOrderButton();
+        });
+
+       sleep(3000);
+
+
+       orderPage.getOrderNumber();
+
+
+        step("Нажать кнопку Посмотреть статус", () -> {
+            orderPage.clickCheckStatusButton();
         });
     }
     @Test()
